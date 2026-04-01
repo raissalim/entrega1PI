@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            background-image: url("fundocereja.jpg");
+            background-size: cover;     
+            background-position: center; 
+            background-repeat: no-repeat;/* não repete */
+        }
+
+        h1 {
+            color: #9f1509;
+            text-shadow:  0px 2px 5px rgb(68, 1, 1);
+            text-align: center;
+            font-weight: bold;
+            font-size: 50px;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+        }
+
+        .kpis {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background-color: #E0574A;
+            padding: 20px;
+            color:white;
+            width: 20%;
+            text-align: center;
+            border-radius: 10px;
+            border-right: solid 10px #9b1509;
+            border-bottom: solid 10px  #9b1509;
+            box-shadow: 0px 4px 10px #b6372c;
+            
+        }
+
+        .graficos {
+            display: flex;
+            justify-content: space-around;
+           
+
+        }
+
+        .grafico-box {
+            background-color: rgb(252, 252, 252);
+            padding: 20px;
+            width: 45%;
+
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Dashboard</h1>
+
+    <!-- KPIs -->
+    <div class="kpis">
+        <div class="card">
+            <h2>120</h2>
+            <p>Total</p>
+        </div>
+
+        <div class="card">
+            <h2>80</h2>
+            <p>Concluídos</p>
+        </div>
+
+        <div class="card">
+            <h2>30</h2>
+            <p>Em Andamento</p>
+        </div>
+
+        <div class="card">
+            <h2>10</h2>
+            <p>Pendentes</p>
+        </div>
+    </div>
+
+    <div class="graficos">
+        <div class="grafico-box">
+            <canvas id="graficoLinha"></canvas>
+        </div>
+
+        <div class="grafico-box">
+            <canvas id="graficoBarra"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+    
+    var ctxLinha = document.getElementById('graficoLinha').getContext('2d');
+    var graficoLinha = new Chart(ctxLinha, {
+        type: 'line',
+        data: {
+            labels: ['12:00', '13:00', '14:00', '15:00', '16:00','17:00'],
+            datasets: [
+                {
+                    label: 'Temperatura',
+                    data: [30, 29, 28, 25, 22, 23],
+                    borderColor: '#E0574A',
+                    backgroundColor: 'rgba(224, 87, 74, 88)',
+                    fill: true
+                },
+                {
+                    label: 'Umidade',
+                    data: [80, 82, 80, 85, 80, 83],
+                    borderColor: 'blue',
+                    backgroundColor: 'rgba(71, 127, 225, 88)',
+                    fill: true
+                }
+            ]
+        }
+    });
+
+   
+    var ctxBarra = document.getElementById('graficoBarra').getContext('2d');
+    var graficoBarra = new Chart(ctxBarra, {
+        type: 'bar',
+        data: {
+            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio','Junho'],
+            datasets: [
+                {
+                    label: 'Temperatura Média',
+                    data: [22, 24, 27, 23, 20, 18],
+                    backgroundColor: 'rgba(224, 87, 74, 88)',
+                },
+                {
+                    label: 'Umidade Média',
+                    data: [90, 89, 93, 87, 88, 82],
+                    backgroundColor: 'rgba(71, 127, 225, 88)',
+                }
+            ]
+        }
+    });
+</script>
+
+</body>
+</html>
